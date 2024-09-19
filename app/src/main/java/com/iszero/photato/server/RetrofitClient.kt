@@ -18,7 +18,7 @@ object RetrofitClient {
         return retrofit!!
     }
 
-    val authService: Post by lazy {
+    val authPostService: Post by lazy {
         val url = BuildConfig.BASE_URL
         getClient(url).create(Post::class.java)
     }
