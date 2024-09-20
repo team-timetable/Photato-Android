@@ -1,5 +1,6 @@
 package com.iszero.photato.design.screen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -22,12 +23,17 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavHostController
 import com.iszero.photato.design.component.AuthTextField
 import com.iszero.photato.design.component.BackScreenButton
 import com.iszero.photato.design.component.BaseButton
 import com.iszero.photato.nav.NavGroup
+import com.iszero.photato.server.api.auth.login
+import com.iszero.photato.server.data.auth.AuthResponse
 import com.iszero.photato.ui.theme.pretendard
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(navController: NavHostController){
@@ -37,6 +43,9 @@ fun LoginScreen(navController: NavHostController){
             .background(Color(0xFFFFD66C)),
         contentAlignment = Alignment.Center
     ){
+        var nameText by remember { mutableStateOf("") }
+        var passwordText by remember { mutableStateOf("") }
+        var errorMessage by remember { mutableStateOf("") }
         BackScreenButton(
             modifier = Modifier
                 .align(Alignment.TopStart)
@@ -62,8 +71,7 @@ fun LoginScreen(navController: NavHostController){
                 .clip(RoundedCornerShape(40.dp))
                 .background(Color.White)
         ){
-            var nameText by remember { mutableStateOf("") }
-            var passwordText by remember { mutableStateOf("") }
+
             AuthTextField(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
@@ -85,13 +93,31 @@ fun LoginScreen(navController: NavHostController){
                 onTextChange = { newText -> passwordText = newText },
                 password = true
             )
+
+            Text(
+                text = errorMessage,
+                modifier = Modifier.align(Alignment.TopCenter).offset(y = (180).dp),
+                color = Color.Red
+            )
         }
         BaseButton(
             text = "로그인",
-            onClick = { /*TODO*/ },
+            onClick = {
+                GlobalScope.launch{
+                    val loginResult: AuthResponse? =
+                        login(username = nameText, password = passwordText)
+                    if (loginResult != null){
+                        Log.d("로그인확인","로그인성공")
+                    }
+                    else{
+                        Log.d("로그인확인","로그인실패")
+                        errorMessage = "다시 로그인해주세요"
+                    }
+                }
+            },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .offset(y = -40.dp),
+                .offset(y = (-40).dp),
             backgroundColor = Color(0xFFFFD66C)
         )
     }
