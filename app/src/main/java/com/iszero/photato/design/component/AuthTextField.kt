@@ -37,9 +37,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 @Composable
 fun AuthTextField(
     modifier: Modifier,
-    placeholder: String,
+    mediumHolder : String,
+    lightHolder: String,
     keyboardType: KeyboardType,
-    password : Boolean = false
+    password : Boolean = false,
+    icon : Int = R.drawable.plant_fill
 ){
     Box(
         modifier
@@ -51,8 +53,10 @@ fun AuthTextField(
                 ambientColor = Color(0xFFE5E5E5),
                 spotColor = Color(0xFFE5E5E5)
             )
-            .background(color = Color(0xFFFFFFFF),
-                shape = RoundedCornerShape(8.dp))
+            .background(
+                color = Color(0xFFFFFFFF),
+                shape = RoundedCornerShape(8.dp)
+            )
     )
         {
         Row(
@@ -60,7 +64,7 @@ fun AuthTextField(
         ) {
             Image(
                 painter = painterResource(
-                    id = R.drawable.plant_fill
+                    id = icon
                 ),
                 contentDescription = "AuthImage",
                 modifier = Modifier
@@ -96,10 +100,20 @@ fun AuthTextField(
                     fontWeight = FontWeight.SemiBold
                 ),
                 placeholder = {
+                    Row{
                     Text(
-                        text = placeholder,
-                        color = Color.Gray
+                        text = mediumHolder,
+                        color = Color.Gray,
+                        fontFamily = pretendard,
+                        fontWeight = FontWeight.Medium
                     )
+                    Text(
+                        text = lightHolder,
+                        color = Color.Gray,
+                        fontFamily = pretendard,
+                        fontWeight = FontWeight.Light
+                    )
+                }
                 }
             )
         }
@@ -107,7 +121,10 @@ fun AuthTextField(
     }
 }
 @Composable
-@Preview
+@Preview(
+    showBackground = true,
+    showSystemUi = true
+)
 fun AuthTextFieldPreview(){
-    AuthTextField(modifier = Modifier, placeholder = "테스트 글귀다 이것들아", keyboardType = KeyboardType.Password)
+    AuthTextField(modifier = Modifier, mediumHolder = "테스트", lightHolder = "글귀다 이것들아", keyboardType = KeyboardType.Password)
 }

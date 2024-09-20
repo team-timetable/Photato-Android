@@ -17,13 +17,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iszero.photato.R
 import com.iszero.photato.design.component.AuthTextField
 import com.iszero.photato.design.component.BackScreenButton
 import com.iszero.photato.design.component.BaseButton
 import com.iszero.photato.ui.theme.pretendard
 
 @Composable
-fun LoginScreen(modifier: Modifier){
+fun SignupScreen(modifier: Modifier){
     Box(
         modifier
             .fillMaxSize()
@@ -37,7 +38,7 @@ fun LoginScreen(modifier: Modifier){
             onClick = {TODO()}
         )
         Text(
-            text = "로그인",
+            text = "회원가입",
             Modifier
                 .align(Alignment.TopCenter)
                 .offset(y = (150).dp),
@@ -61,7 +62,8 @@ fun LoginScreen(modifier: Modifier){
                     .offset(y = 40.dp),
                 mediumHolder = "이름",
                 lightHolder = "을 입력해주세요",
-                keyboardType = KeyboardType.Text
+                keyboardType = KeyboardType.Text,
+                icon = R.drawable.plant_un_fill
             )
             AuthTextField(
                 modifier = Modifier
@@ -70,11 +72,12 @@ fun LoginScreen(modifier: Modifier){
                 mediumHolder = "비밀번호",
                 lightHolder = "를 입력해주세요",
                 keyboardType = KeyboardType.Password,
-                password = true
+                password = true,
+                icon = R.drawable.plant_un_fill
             )
         }
         BaseButton(
-            text = "로그인",
+            text = "회원가입",
             onClick = { /*TODO*/ },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
@@ -89,7 +92,7 @@ fun LoginScreen(modifier: Modifier){
     showBackground = true,
     showSystemUi = true
 )
-fun LoginScreenPreview() {
-    LoginScreen(modifier = Modifier.fillMaxSize())
+fun SignupScreenPreview() {
+    SignupScreen(modifier = Modifier.fillMaxSize())
 }
 
