@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight.Companion.Light
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.iszero.photato.ui.theme.pretendard
 
 @Composable
@@ -23,13 +24,14 @@ fun BaseButton(
     onClick: () -> Unit,
     backgroundColor: Color = Color.White,
     textColor: Color = Color.Black,
-    modifier: Modifier = Modifier
+    modifier: Modifier
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth(0.7f)
             .fillMaxHeight(0.07f)
-            .background(color = Color(0xFFEFEFEF), shape = RoundedCornerShape(8.dp)) // 연한 배경색
+            .background(color = Color(0xFFEFEFEF),
+                shape = RoundedCornerShape(8.dp))
     ) {
         Button(
             onClick = onClick,
@@ -47,6 +49,7 @@ fun BaseButton(
             Text(
                 text = text,
                 color = textColor,
+                fontSize = 18.sp,
                 fontFamily = pretendard,
                 fontWeight = Light
             )

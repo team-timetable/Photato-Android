@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.iszero.photato.design.screen.IntroScreen
+import com.iszero.photato.design.screen.LoginScreen
 import com.iszero.photato.ui.theme.PhotatoTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,27 +22,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             PhotatoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    IntroScreen(
+                    LoginScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun GreetingPreview() {
-    PhotatoTheme {
-        Greeting("Android")
     }
 }
