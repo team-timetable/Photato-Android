@@ -17,19 +17,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.iszero.photato.design.component.AuthTextField
 import com.iszero.photato.design.component.BackScreenButton
 import com.iszero.photato.design.component.BaseButton
+import com.iszero.photato.nav.NavGroup
 import com.iszero.photato.ui.theme.pretendard
 
 @Composable
-fun LoginScreen(modifier: Modifier){
+fun LoginScreen(navController: NavHostController){
     Box(
-        modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFFFD66C)),
         contentAlignment = Alignment.Center
@@ -38,7 +41,7 @@ fun LoginScreen(modifier: Modifier){
             modifier = Modifier
                 .align(Alignment.TopStart)
                 .offset(x = 15.dp, y = 20.dp),
-            onClick = {TODO()}
+            onClick = {navController.navigate(NavGroup.INTRO)}
         )
         Text(
             text = "로그인",
@@ -100,6 +103,6 @@ fun LoginScreen(modifier: Modifier){
     showSystemUi = true
 )
 fun LoginScreenPreview() {
-    LoginScreen(modifier = Modifier.fillMaxSize())
+    LoginScreen(navController = NavHostController(LocalContext.current))
 }
 

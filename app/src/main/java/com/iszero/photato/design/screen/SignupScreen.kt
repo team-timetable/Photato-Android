@@ -17,20 +17,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.iszero.photato.R
 import com.iszero.photato.design.component.AuthTextField
 import com.iszero.photato.design.component.BackScreenButton
 import com.iszero.photato.design.component.BaseButton
+import com.iszero.photato.nav.NavGroup
 import com.iszero.photato.ui.theme.pretendard
 
 @Composable
-fun SignupScreen(modifier: Modifier){
+fun SignupScreen(navController: NavHostController){
     Box(
-        modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFFFD66C)),
         contentAlignment = Alignment.Center
@@ -39,7 +42,7 @@ fun SignupScreen(modifier: Modifier){
             modifier = Modifier
                 .align(Alignment.TopStart)
                 .offset(x = 15.dp, y = 20.dp),
-            onClick = {TODO()}
+            onClick = {navController.navigate(NavGroup.INTRO)}
         )
         Text(
             text = "회원가입",
@@ -62,6 +65,7 @@ fun SignupScreen(modifier: Modifier){
         ){
             var nameText by remember { mutableStateOf("") }
             var passwordText by remember { mutableStateOf("") }
+            var rePasswordText by remember { mutableStateOf("") }
             AuthTextField(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
@@ -85,6 +89,18 @@ fun SignupScreen(modifier: Modifier){
                 password = true,
                 icon = R.drawable.plant_un_fill
             )
+            AuthTextField(
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .offset(y = 200.dp),
+                mediumHolder = "비밀번호",
+                lightHolder = " 확인",
+                keyboardType = KeyboardType.Password,
+                text = rePasswordText,
+                onTextChange = { newText -> rePasswordText = newText },
+                password = true,
+                icon = R.drawable.plant_un_fill
+            )
         }
         BaseButton(
             text = "회원가입",
@@ -103,6 +119,6 @@ fun SignupScreen(modifier: Modifier){
     showSystemUi = true
 )
 fun SignupScreenPreview() {
-    SignupScreen(modifier = Modifier.fillMaxSize())
+    SignupScreen(navController = NavHostController(LocalContext.current))
 }
 

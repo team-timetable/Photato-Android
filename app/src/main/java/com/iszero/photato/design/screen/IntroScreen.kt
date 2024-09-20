@@ -14,22 +14,25 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.iszero.photato.R
 import com.iszero.photato.design.component.BaseButton
+import com.iszero.photato.nav.NavGroup
 
 @Composable
-fun IntroScreen(modifier: Modifier) {
+fun IntroScreen(navController: NavHostController) {
     Box(
-        modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFFFD66C)),
         contentAlignment = Alignment.Center
     ) {
         androidx.compose.foundation.Canvas(
-            modifier = modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize()
         ) {
             val ovalWidth = size.width * 2f
             val ovalHeight = size.height * 0.8f
@@ -57,7 +60,7 @@ fun IntroScreen(modifier: Modifier) {
             painter = painterResource(id = R.drawable.photato_logo_text),
         )
         BaseButton(text = "로그인",
-            onClick = { /*TODO*/ },
+            onClick = {navController.navigate(NavGroup.LOGIN)},
             backgroundColor = Color(0xFFFFD66C),
             textColor = Color.Black,
             modifier = Modifier
@@ -69,11 +72,10 @@ fun IntroScreen(modifier: Modifier) {
                     clip = false,
                     ambientColor = Color(0xFFFAFAFA),
                     spotColor = Color(0xFFFAFAFA)
-
                 )
         )
         BaseButton(text = "회원가입",
-            onClick = { /*TODO*/ },
+            onClick = {navController.navigate(NavGroup.SIGNUP)},
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .offset(y = (-40).dp)
@@ -87,5 +89,5 @@ fun IntroScreen(modifier: Modifier) {
     showSystemUi = true
 )
 fun IntroScreenPreview() {
-    IntroScreen(modifier = Modifier.fillMaxSize())
+    IntroScreen(navController = NavHostController(LocalContext.current))
 }

@@ -4,15 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.iszero.photato.design.screen.IntroScreen
-import com.iszero.photato.design.screen.LoginScreen
+import androidx.navigation.compose.rememberNavController
+
+import com.iszero.photato.nav.NavGraph
 import com.iszero.photato.ui.theme.PhotatoTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,11 +15,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PhotatoTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LoginScreen(
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val navHostController = rememberNavController()
+                NavGraph(navHostController)
             }
         }
     }
