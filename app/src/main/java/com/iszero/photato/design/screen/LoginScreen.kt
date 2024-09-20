@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,6 +47,7 @@ fun LoginScreen(navController: NavHostController){
         var nameText by remember { mutableStateOf("") }
         var passwordText by remember { mutableStateOf("") }
         var errorMessage by remember { mutableStateOf("") }
+        val coroutineScope = rememberCoroutineScope()
         BackScreenButton(
             modifier = Modifier
                 .align(Alignment.TopStart)
@@ -103,7 +105,7 @@ fun LoginScreen(navController: NavHostController){
         BaseButton(
             text = "로그인",
             onClick = {
-                GlobalScope.launch{
+                coroutineScope.launch{
                     val loginResult: AuthResponse? =
                         login(username = nameText, password = passwordText)
                     if (loginResult != null){
