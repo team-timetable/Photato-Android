@@ -7,16 +7,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -29,6 +24,10 @@ import androidx.compose.ui.unit.sp
 import com.iszero.photato.R
 import com.iszero.photato.ui.theme.pretendard
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -39,6 +38,8 @@ fun AuthTextField(
     modifier: Modifier,
     mediumHolder : String,
     lightHolder: String,
+    text: String,                          // text를 외부로부터 전달받음
+    onTextChange: (String) -> Unit,
     keyboardType: KeyboardType,
     password : Boolean = false,
     icon : Int = R.drawable.plant_fill
@@ -71,9 +72,9 @@ fun AuthTextField(
                     .size(28.dp)
                     .align(Alignment.CenterVertically)
             )
-            var text by remember { mutableStateOf("") }
+
             TextField(
-                value = text, onValueChange = { text = it },
+                value = text, onValueChange = onTextChange,
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color(0xFFFFFFFF),
                     focusedIndicatorColor = Color.Transparent,
@@ -126,5 +127,6 @@ fun AuthTextField(
     showSystemUi = true
 )
 fun AuthTextFieldPreview(){
-    AuthTextField(modifier = Modifier, mediumHolder = "테스트", lightHolder = "글귀다 이것들아", keyboardType = KeyboardType.Password)
+    var text by remember { mutableStateOf("")}
+    AuthTextField(modifier = Modifier, mediumHolder = "테스트", lightHolder = "글귀다 이것들아", text = text, onTextChange = { newText -> text = newText }, keyboardType = KeyboardType.Password)
 }

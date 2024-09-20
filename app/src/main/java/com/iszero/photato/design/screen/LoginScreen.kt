@@ -9,6 +9,10 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -55,12 +59,16 @@ fun LoginScreen(modifier: Modifier){
                 .clip(RoundedCornerShape(40.dp))
                 .background(Color.White)
         ){
+            var nameText by remember { mutableStateOf("") }
+            var passwordText by remember { mutableStateOf("") }
             AuthTextField(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
                     .offset(y = 40.dp),
                 mediumHolder = "이름",
                 lightHolder = "을 입력해주세요",
+                text = nameText,
+                onTextChange = { newText -> nameText = newText },
                 keyboardType = KeyboardType.Text
             )
             AuthTextField(
@@ -70,6 +78,8 @@ fun LoginScreen(modifier: Modifier){
                 mediumHolder = "비밀번호",
                 lightHolder = "를 입력해주세요",
                 keyboardType = KeyboardType.Password,
+                text = passwordText,
+                onTextChange = { newText -> passwordText = newText },
                 password = true
             )
         }
