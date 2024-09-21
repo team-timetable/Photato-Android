@@ -24,7 +24,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavHostController
 import com.iszero.photato.design.component.AuthTextField
 import com.iszero.photato.design.component.BackScreenButton
@@ -33,7 +32,6 @@ import com.iszero.photato.nav.NavGroup
 import com.iszero.photato.server.api.auth.login
 import com.iszero.photato.server.data.auth.AuthResponse
 import com.iszero.photato.ui.theme.pretendard
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @Composable

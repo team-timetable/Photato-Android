@@ -32,7 +32,6 @@ import com.iszero.photato.design.component.BaseButton
 import com.iszero.photato.nav.NavGroup
 import com.iszero.photato.server.api.auth.signup
 import com.iszero.photato.ui.theme.pretendard
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @Composable
@@ -139,7 +138,7 @@ fun SignupScreen(navController: NavHostController){
             },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .offset(y = -40.dp),
+                .offset(y = (-40).dp),
             backgroundColor = Color(0xFFFFD66C)
         )
     }
