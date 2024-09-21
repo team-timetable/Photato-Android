@@ -46,6 +46,7 @@ fun LoginScreen(navController: NavHostController){
         var passwordText by remember { mutableStateOf("") }
         var errorMessage by remember { mutableStateOf("") }
         val coroutineScope = rememberCoroutineScope()
+        val context = LocalContext.current
         BackScreenButton(
             modifier = Modifier
                 .align(Alignment.TopStart)
@@ -105,7 +106,11 @@ fun LoginScreen(navController: NavHostController){
             onClick = {
                 coroutineScope.launch{
                     val loginResult: AuthResponse? =
-                        login(username = nameText, password = passwordText)
+                        login(
+                            username = nameText,
+                            password = passwordText,
+                            context = context
+                        )
                     if (loginResult != null){
                         Log.d("로그인확인","로그인성공")
                     }
