@@ -102,7 +102,7 @@ fun SignupScreen(navController: NavHostController){
                     .align(Alignment.TopCenter)
                     .offset(y = 200.dp),
                 mediumHolder = "비밀번호",
-                lightHolder = "를 다시입력해주세요",
+                lightHolder = " 확인할게여",
                 keyboardType = KeyboardType.Password,
                 text = rePasswordText,
                 onTextChange = { newText -> rePasswordText = newText },

@@ -128,5 +128,5 @@ fun AuthTextField(
 )
 fun AuthTextFieldPreview(){
     var text by remember { mutableStateOf("")}
-    AuthTextField(modifier = Modifier, mediumHolder = "테스트", lightHolder = "글귀다 이것들아", text = text, onTextChange = { newText -> text = newText }, keyboardType = KeyboardType.Password)
+    AuthTextField(modifier = Modifier, mediumHolder = "테스트", lightHolder = " 글귀다 이것들아", text = text, onTextChange = { newText -> text = newText }, keyboardType = KeyboardType.Password)
 }
