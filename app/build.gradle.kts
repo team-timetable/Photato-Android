@@ -82,7 +82,5 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.ui)
     implementation(libs.datastore.preferences)
-    implementation(libs.androidx.material)
-    implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
 }
