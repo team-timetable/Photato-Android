@@ -83,4 +83,6 @@ dependencies {
     implementation(libs.ui)
     implementation(libs.datastore.preferences)
     implementation(libs.androidx.navigation.compose)
+    implementation("androidx.navigation:navigation-compose:2.7.0")
+    implementation("androidx.compose.material:material:1.5.1")
 }

@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PhotatoTheme {
                 val navHostController = rememberNavController()
-                NavGraph(navHostController)
+                NavGraph(navController = navHostController)
             }
         }
     }

@@ -113,6 +113,7 @@ fun LoginScreen(navController: NavHostController){
                         )
                     if (loginResult != null){
                         Log.d("로그인확인","로그인성공")
+                        navController.navigate(NavGroup.HOME)
                     }
                     else{
                         Log.d("로그인확인","로그인실패")
