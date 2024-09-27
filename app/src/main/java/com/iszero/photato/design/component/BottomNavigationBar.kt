@@ -1,6 +1,8 @@
 package com.iszero.photato.design.component
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigation
@@ -25,9 +27,9 @@ import com.iszero.photato.nav.currentRoute
 fun BottomNavigationBar (navController: NavController){
     Card(
         shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp),
-        elevation = 8.dp,
+        elevation = 16.dp,
         backgroundColor = Color.White,
-        modifier = Modifier.fillMaxHeight(0.12f)
+        modifier = Modifier.fillMaxHeight(0.14f)
     ) {
         BottomNavigation(
             backgroundColor = Color.White
@@ -35,38 +37,74 @@ fun BottomNavigationBar (navController: NavController){
             BottomNavigationItem(
                 modifier = Modifier.align(alignment = Alignment.CenterVertically),
                 icon = {
-                    Icon(
-                        painterResource(R.drawable.home),
-                        contentDescription = "Home",
-                        modifier = Modifier.size(24.dp),
-                        tint = if (currentRoute(navController) == "home") Color.Black else Color(0xFFCCCCCC)
+                    Box(
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    ) {
+                        Icon(
+                            painterResource(R.drawable.home),
+                            contentDescription = "Home",
+                            modifier = Modifier.size(24.dp),
+                            tint = if (currentRoute(navController) == "home") Color.Black else Color(
+                                0xFFCCCCCC
+                            )
 
-                    )
+                        )
+                    }
                 },
                 label = {
-                    Text(
-                        text = "홈",
-                        color = if (currentRoute(navController) == "home") Color.Black else Color(0xFF6E6E6E)
-                    )
-                        },
+                    Box(modifier = Modifier.padding(top = 4.dp))
+                        Text(
+                            text = "홈",
+                            color = if (currentRoute(navController) == "home") Color.Black else Color(
+                                0xFF6E6E6E
+                            )
+                        )
+                    },
                 selected = currentRoute(navController) == "home",
                 onClick = { navController.navigate("home") }
             )
             BottomNavigationItem(
                 modifier = Modifier.align(alignment = Alignment.CenterVertically),
                 icon = {
-                    Icon(
-                        painterResource(R.drawable.my),
-                        contentDescription = "My",
-                        modifier = Modifier.size(24.dp),
-                        tint = if (currentRoute(navController) == "my") Color.Black else Color(0xFFCCCCCC)
-                    )
+                    Box(
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    ) {
+                        Icon(
+                            painterResource(R.drawable.add_photo),
+                            contentDescription = "Camera",
+                            modifier = Modifier.size(50.dp),
+                            tint = Color.Unspecified
+                        )
+                    }
+                },
+                selected = currentRoute(navController) == "camera",
+                onClick = { navController.navigate("camera") }
+            )
+            BottomNavigationItem(
+                modifier = Modifier.align(alignment = Alignment.CenterVertically),
+                icon = {
+                    Box(
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    ) {
+                        Icon(
+                            painterResource(R.drawable.my),
+                            contentDescription = "My",
+                            modifier = Modifier.size(24.dp),
+                            tint = if (currentRoute(navController) == "my") Color.Black else Color(
+                                0xFFCCCCCC
+                            )
+                        )
+                    }
                 },
                 label = {
-                    Text(
-                        text = "마이",
-                        color = if (currentRoute(navController) == "my") Color.Black else Color(0xFF6E6E6E)
-                    )
+                    Box(modifier = Modifier.padding(top = 4.dp)) {
+                        Text(
+                            text = "마이",
+                            color = if (currentRoute(navController) == "my") Color.Black else Color(
+                                0xFF6E6E6E
+                            )
+                        )
+                    }
                 },
                 selected = currentRoute(navController) == "my",
                 onClick = { navController.navigate("my") }

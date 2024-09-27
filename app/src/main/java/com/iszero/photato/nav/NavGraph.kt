@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.iszero.photato.design.screen.CameraScreen
 import com.iszero.photato.design.screen.HomeScreen
 import com.iszero.photato.design.screen.IntroScreen
 import com.iszero.photato.design.screen.LoginScreen
@@ -29,6 +30,9 @@ fun NavGraph(navController: NavHostController) {
         }
         composable(route = NavGroup.MY) {
             MyScreen(navController = navController)
+        }
+        composable(route = NavGroup.CAMERA) {
+            CameraScreen(navController = navController)
         }
     }
 }

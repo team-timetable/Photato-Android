@@ -52,7 +52,8 @@ fun SignupScreen(navController: NavHostController){
             modifier = Modifier
                 .align(Alignment.TopStart)
                 .offset(x = 15.dp, y = 20.dp),
-            onClick = {navController.navigate(NavGroup.INTRO)}
+            onClick = {navController.navigate(NavGroup.INTRO)},
+            color = Color.White
         )
         Text(
             text = "회원가입",
